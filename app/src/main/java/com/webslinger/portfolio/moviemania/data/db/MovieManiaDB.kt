@@ -11,11 +11,15 @@ import com.webslinger.portfolio.moviemania.data.networking.schema.character.Char
 import com.webslinger.portfolio.moviemania.data.networking.schema.movie.MovieSchema
 import com.webslinger.portfolio.moviemania.data.networking.schema.tvshow.TVShowSchema
 
-@Database(entities = [
-    MovieSchema::class,
-    TVShowSchema::class,
-    CharacterSchema::class
-], version = 1)
+@Database(
+    entities = [
+        MovieSchema::class,
+        TVShowSchema::class,
+        CharacterSchema::class
+    ],
+    version = 1,
+    exportSchema = false
+)
 
 abstract class MovieManiaDB: RoomDatabase() {
     abstract val movieDAO: MovieDAO

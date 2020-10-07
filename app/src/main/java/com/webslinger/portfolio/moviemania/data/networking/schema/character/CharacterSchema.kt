@@ -2,6 +2,7 @@ package com.webslinger.portfolio.moviemania.data.networking.schema.character
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import com.webslinger.portfolio.moviemania.data.dto.common.NetworkModel
 
 @JsonClass(generateAdapter = true)
 data class CharacterSchema(
@@ -16,4 +17,4 @@ data class CharacterSchema(
     val popularity: Double,
     @Json(name = "profile_path")
     val profilePath: String
-)
+): NetworkModel

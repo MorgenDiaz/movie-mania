@@ -2,6 +2,7 @@ package com.webslinger.portfolio.moviemania.data.networking.schema.tvshow
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import com.webslinger.portfolio.moviemania.data.dto.common.NetworkModel
 
 @JsonClass(generateAdapter = true)
 data class TVShowSchema(
@@ -27,4 +28,4 @@ data class TVShowSchema(
     val voteAverage: Double,
     @Json(name = "vote_count")
     val voteCount: Int
-)
+): NetworkModel

@@ -2,7 +2,7 @@ package com.webslinger.portfolio.moviemania.data.networking.schema.movie
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import com.webslinger.portfolio.moviemania.data.dto.common.NetworkModel
+import com.webslinger.portfolio.moviemania.data.dto.common.INetworkModel
 
 @JsonClass(generateAdapter = true)
 data class MovieListSchema(
@@ -13,4 +13,4 @@ data class MovieListSchema(
     val totalPages: Int,
     @Json(name = "total_results")
     val totalResults: Int
-): NetworkModel
+): INetworkModel

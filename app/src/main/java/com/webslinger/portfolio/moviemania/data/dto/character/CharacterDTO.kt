@@ -1,20 +1,20 @@
-package com.webslinger.portfolio.moviemania.data.dto
+package com.webslinger.portfolio.moviemania.data.dto.character
 
 import com.webslinger.portfolio.moviemania.data.db.character.DBCharacter
 import com.webslinger.portfolio.moviemania.data.db.character.DBCharacterKnownFor
-import com.webslinger.portfolio.moviemania.data.db.character.KnownForDTO
-import com.webslinger.portfolio.moviemania.data.dto.common.DTO
-import com.webslinger.portfolio.moviemania.data.dto.common.DataBaseModel
-import com.webslinger.portfolio.moviemania.data.dto.common.NetworkModel
+import com.webslinger.portfolio.moviemania.data.dto.character.knownfor.KnownForDTO
+import com.webslinger.portfolio.moviemania.data.dto.common.IDataBaseModel
+import com.webslinger.portfolio.moviemania.data.dto.common.INetworkModel
 import com.webslinger.portfolio.moviemania.data.networking.schema.character.CharacterSchema
+import com.webslinger.portfolio.moviemania.domain.Character
 
-class CharacterDTO(private val knownForDTO: KnownForDTO): DTO {
-    override fun schemaToDBModel(characterSchema: NetworkModel): DBCharacterKnownFor {
-        if(!CharacterSchema::class.java.isAssignableFrom(NetworkModel::class.java)){
+class CharacterDTO(private val knownForDTO: KnownForDTO): ICharacterDTO {
+    override fun schemaToDBModel(networkModel: INetworkModel): DBCharacterKnownFor {
+        if(!CharacterSchema::class.java.isAssignableFrom(INetworkModel::class.java)){
             throw IllegalArgumentException("Invalid character schema.")
         }
 
-        (characterSchema as CharacterSchema).apply {
+        (networkModel as CharacterSchema).apply {
             return DBCharacterKnownFor(
                 DBCharacter(
                     adult,
@@ -33,12 +33,12 @@ class CharacterDTO(private val knownForDTO: KnownForDTO): DTO {
         }
     }
 
-    override fun dbModelToSchema(dbCharacter: DataBaseModel): CharacterSchema {
-        if(!DBCharacter::class.java.isAssignableFrom(NetworkModel::class.java)){
+    override fun dbModelToSchema(dbModel: IDataBaseModel): CharacterSchema {
+        if(!DBCharacter::class.java.isAssignableFrom(INetworkModel::class.java)){
             throw IllegalArgumentException("Invalid character database model.")
         }
 
-        (dbCharacter as DBCharacterKnownFor).apply {
+        (dbModel as DBCharacterKnownFor).apply {
             return CharacterSchema(
                 character.adult,
                 character.gender,
@@ -53,5 +53,9 @@ class CharacterDTO(private val knownForDTO: KnownForDTO): DTO {
             )
         }
 
+    }
+
+    override fun dbModelToDomain(dbModel: IDataBaseModel): Character {
+        TODO("Not yet implemented")
     }
 }

@@ -11,4 +11,4 @@ data class Character(
     val name: String,
     val popularity: Double,
     val profilePath: String
-)
+): IDomainModel

@@ -3,7 +3,7 @@ package com.webslinger.portfolio.moviemania.data.db.tvshow
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.webslinger.portfolio.moviemania.data.dto.common.DataBaseModel
+import com.webslinger.portfolio.moviemania.data.dto.common.IDataBaseModel
 
 @Entity(tableName = "tv_shows_table")
 data class DBTVShow (
@@ -30,4 +30,4 @@ data class DBTVShow (
     val voteAverage: Double,
     @ColumnInfo(name = "vote_count")
     val voteCount: Int
-): DataBaseModel
+): IDataBaseModel

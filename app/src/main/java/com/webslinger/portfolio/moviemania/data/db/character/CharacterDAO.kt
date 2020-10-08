@@ -1,19 +1,29 @@
 package com.webslinger.portfolio.moviemania.data.db.character
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
-interface CharacterDAO {
+abstract class CharacterDAO {
+    suspend fun saveCharactersAndKnownFor(charactersKnownFor: List<DBCharacterKnownFor>){
+        saveCharacters(charactersKnownFor.map { it.character })
+
+        charactersKnownFor.forEach {
+            saveKnownFor(it.knownFor)
+        }
+    }
+
+    @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveCharacters(characters: List<DBCharacter>)
+    abstract suspend fun saveCharacters(characters: List<DBCharacter>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract suspend fun saveKnownFor(knownFor: List<DBKnownFor>)
 
     @Query("DELETE FROM characters_table")
-    suspend fun deleteAllCharacters()
+    abstract suspend fun deleteAllCharacters()
 
+    @Transaction
     @Query("SELECT * FROM characters_table")
-    fun getAllCharacters(): LiveData<List<DBCharacter>>
+    abstract fun getAllCharacters(): LiveData<List<DBCharacterKnownFor>>
 }

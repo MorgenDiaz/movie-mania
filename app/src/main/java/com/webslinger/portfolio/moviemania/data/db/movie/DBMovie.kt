@@ -12,7 +12,7 @@ data class DBMovie(
     val backdropPath: String,
     @ColumnInfo(name = "genre_ids")
     val genreIds: List<Int>,
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int,
     @ColumnInfo(name = "original_language")
     val originalLanguage: String,

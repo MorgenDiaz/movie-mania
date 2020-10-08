@@ -1,6 +1,7 @@
 package com.webslinger.portfolio.moviemania.data.db.character
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.webslinger.portfolio.moviemania.data.dto.common.DataBaseModel
@@ -10,10 +11,8 @@ import com.webslinger.portfolio.moviemania.data.networking.schema.character.Know
 data class DBCharacter (
     val adult: Boolean,
     val gender: Int,
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int,
-    @ColumnInfo(name = "known_for")
-    val knownFor: List<KnownForSchema>,
     @ColumnInfo(name = "known_for_department")
     val knownForDepartment: String,
     val name: String,

@@ -13,7 +13,7 @@ data class DBTVShow (
     val firstAirDate: String,
     @ColumnInfo(name = "genre_ids")
     val genreIds: List<Int>,
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey()
     val id: Int,
     val name: String,
     @ColumnInfo(name = "origin_country")

@@ -4,22 +4,27 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.webslinger.portfolio.moviemania.data.db.character.CharacterDAO
+import com.webslinger.portfolio.moviemania.data.db.character.DBCharacter
+import com.webslinger.portfolio.moviemania.data.db.character.DBKnownFor
+import com.webslinger.portfolio.moviemania.data.db.movie.DBMovie
 import com.webslinger.portfolio.moviemania.data.db.movie.MovieDAO
+import com.webslinger.portfolio.moviemania.data.db.tvshow.DBTVShow
 import com.webslinger.portfolio.moviemania.data.db.tvshow.TvShowDAO
-import com.webslinger.portfolio.moviemania.data.networking.schema.character.CharacterSchema
-import com.webslinger.portfolio.moviemania.data.networking.schema.movie.MovieSchema
-import com.webslinger.portfolio.moviemania.data.networking.schema.tvshow.TVShowSchema
 
 @Database(
     entities = [
-        MovieSchema::class,
-        TVShowSchema::class,
-        CharacterSchema::class
+        DBMovie::class,
+        DBTVShow::class,
+        DBCharacter::class,
+        DBKnownFor::class
     ],
     version = 1,
     exportSchema = false
 )
+
+@TypeConverters(Converters::class)
 
 abstract class MovieManiaDB: RoomDatabase() {
     abstract val movieDAO: MovieDAO

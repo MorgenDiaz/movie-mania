@@ -9,5 +9,30 @@
         android:id="@+id/homeFragment"
         android:name="com.webslinger.portfolio.moviemania.presentation.home.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_moviesFragment"
+            app:destination="@id/moviesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_tvShowsFragment"
+            app:destination="@id/tvShowsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_charactersFragment"
+            app:destination="@id/charactersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="com.webslinger.portfolio.moviemania.presentation.movies.MoviesFragment"
+        android:label="movies_fragment"
+        tools:layout="@layout/movies_fragment" />
+    <fragment
+        android:id="@+id/tvShowsFragment"
+        android:name="com.webslinger.portfolio.moviemania.presentation.tvshows.TvShowsFragment"
+        android:label="tv_shows_fragment"
+        tools:layout="@layout/tv_shows_fragment" />
+    <fragment
+        android:id="@+id/charactersFragment"
+        android:name="com.webslinger.portfolio.moviemania.presentation.characters.CharactersFragment"
+        android:label="characters_fragment"
+        tools:layout="@layout/characters_fragment" />
 </navigation>

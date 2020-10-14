@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.webslinger.portfolio.moviemania.R
+import com.webslinger.portfolio.moviemania.application.home.HomeViewModel
 
 class HomeFragment : Fragment() {
 

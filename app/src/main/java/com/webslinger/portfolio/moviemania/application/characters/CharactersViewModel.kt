@@ -1,4 +1,4 @@
-package com.webslinger.portfolio.moviemania.presentation.characters
+package com.webslinger.portfolio.moviemania.application.characters
 
 import androidx.lifecycle.ViewModel
 

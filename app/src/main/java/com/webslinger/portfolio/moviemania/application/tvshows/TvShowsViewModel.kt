@@ -1,4 +1,4 @@
-package com.webslinger.portfolio.moviemania.presentation.tvshows
+package com.webslinger.portfolio.moviemania.application.tvshows
 
 import androidx.lifecycle.ViewModel
 

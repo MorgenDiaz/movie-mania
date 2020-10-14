@@ -78,40 +78,6 @@ class MainActivity : AppCompatActivity() {
 
         showAllNetworkData(updateCharactersUseCase, updateTvShowsUseCase, updateMoviesUseCase)
 
-        movies.observe(this, Observer {
-            var movieTitles: String = ""
-            it.forEach { movie ->
-                movieTitles += movie.title
-                movieTitles += "\n"
-            }
-
-            main_text_view.text = movieTitles
-
-        })
-
-        tvShows.observe(this, Observer {
-            var tvShowTitles = ""
-
-            it.forEach {tvShow ->
-                tvShowTitles += tvShow.name
-                tvShowTitles += "\n"
-            }
-
-            main_text_view.text = tvShowTitles
-        })
-
-        characters.observe(this, Observer {
-            var characterNames = ""
-
-            it.forEach {character ->
-                characterNames += character.name
-                characterNames += "\n"
-            }
-
-            main_text_view.text = characterNames
-
-        })
-
     }
 
     private fun createUpdateMoviesUseCase(movieService: MovieService, apiKey: String, movieDAO: MovieDAO): UpdateMoviesUseCase {

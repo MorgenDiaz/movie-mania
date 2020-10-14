@@ -10,13 +10,13 @@ import com.webslinger.portfolio.moviemania.data.db.character.DBCharacter
 import com.webslinger.portfolio.moviemania.data.db.character.DBKnownFor
 import com.webslinger.portfolio.moviemania.data.db.movie.DBMovie
 import com.webslinger.portfolio.moviemania.data.db.movie.MovieDAO
-import com.webslinger.portfolio.moviemania.data.db.tvshow.DBTVShow
+import com.webslinger.portfolio.moviemania.data.db.tvshow.DBTvShow
 import com.webslinger.portfolio.moviemania.data.db.tvshow.TvShowDAO
 
 @Database(
     entities = [
         DBMovie::class,
-        DBTVShow::class,
+        DBTvShow::class,
         DBCharacter::class,
         DBKnownFor::class
     ],

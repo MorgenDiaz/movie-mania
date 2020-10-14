@@ -5,8 +5,8 @@ import androidx.room.*
 
 @Dao
 abstract class CharacterDAO {
-    suspend fun saveCharactersAndKnownFor(charactersKnownFor: List<DBCharacterKnownFor>){
-        saveCharacters(charactersKnownFor.map { it.character })
+    suspend fun saveCharacters(charactersKnownFor: List<DBCharacterKnownFor>){
+        saveBaseCharacters(charactersKnownFor.map { it.character })
 
         charactersKnownFor.forEach {
             saveKnownFor(it.knownFor)
@@ -15,7 +15,7 @@ abstract class CharacterDAO {
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun saveCharacters(characters: List<DBCharacter>)
+    protected abstract suspend fun saveBaseCharacters(characters: List<DBCharacter>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun saveKnownFor(knownFor: List<DBKnownFor>)
@@ -25,5 +25,5 @@ abstract class CharacterDAO {
 
     @Transaction
     @Query("SELECT * FROM characters_table")
-    abstract fun getAllCharacters(): LiveData<List<DBCharacterKnownFor>>
+    abstract fun getAllCharacters(): List<DBCharacterKnownFor>
 }

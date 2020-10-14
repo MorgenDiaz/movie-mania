@@ -1,11 +1,12 @@
 package com.webslinger.portfolio.moviemania.data.networking.endpoints
 
-import com.webslinger.portfolio.moviemania.data.networking.schema.character.CharacterSchema
+import com.webslinger.portfolio.moviemania.data.networking.model.character.NetworkCharacter
+import com.webslinger.portfolio.moviemania.data.networking.model.character.NetworkCharacterList
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface CharacterService {
-    @GET("/person/popular")
-    suspend fun getPopular(@Query("api_key") apiKey: String): Response<CharacterSchema>
+    @GET("person/popular")
+    suspend fun getPopular(@Query("api_key") apiKey: String): Response<NetworkCharacterList>
 }

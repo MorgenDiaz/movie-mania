@@ -3,7 +3,6 @@ package com.webslinger.portfolio.moviemania.data.db.character
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.webslinger.portfolio.moviemania.data.dto.common.IDataBaseModel
 
 @Entity(tableName = "characters_table")
 data class DBCharacter (
@@ -17,4 +16,4 @@ data class DBCharacter (
     val popularity: Double,
     @ColumnInfo(name = "profile_path")
     val profilePath: String
-): IDataBaseModel
+)

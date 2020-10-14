@@ -3,7 +3,6 @@ package com.webslinger.portfolio.moviemania.data.db.movie
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.webslinger.portfolio.moviemania.data.dto.common.IDataBaseModel
 
 @Entity(tableName = "movies_table")
 data class DBMovie(
@@ -30,4 +29,4 @@ data class DBMovie(
     val voteAverage: Double,
     @ColumnInfo(name = "vote_count")
     val voteCount: Int
-): IDataBaseModel
+)

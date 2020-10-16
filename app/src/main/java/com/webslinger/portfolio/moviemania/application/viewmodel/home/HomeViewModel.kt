@@ -1,4 +1,4 @@
-package com.webslinger.portfolio.moviemania.application.home
+package com.webslinger.portfolio.moviemania.application.viewmodel.home
 
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController

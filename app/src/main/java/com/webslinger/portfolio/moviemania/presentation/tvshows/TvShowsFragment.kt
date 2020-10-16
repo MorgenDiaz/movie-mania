@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.webslinger.portfolio.moviemania.R
-import com.webslinger.portfolio.moviemania.application.tvshows.TvShowsViewModel
+import com.webslinger.portfolio.moviemania.application.viewmodel.tvshows.TvShowsViewModel
 
 class TvShowsFragment : Fragment() {
 

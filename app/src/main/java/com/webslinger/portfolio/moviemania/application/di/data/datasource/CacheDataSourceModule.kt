@@ -8,7 +8,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class CacheDataSource {
+class CacheDataSourceModule {
     @Singleton
     @Provides
     fun provideMovieCacheDataSource(): MovieCahceDataSource{

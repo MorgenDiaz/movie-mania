@@ -26,26 +26,22 @@ class HomeFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        injector.createHomeComponent().inject(this)
-
-        initializeViewModel()
-
-        initializeDataBinding(inflater, container)
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false)
 
         return dataBinding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        injector.createHomeComponent().inject(this)
+        initializeViewModel()
+        dataBinding.viewModel = viewModel
     }
 
     private fun initializeViewModel() {
         homeViewModelFactory.bindNavController(findNavController())
         viewModel = ViewModelProvider(this, homeViewModelFactory).get(HomeViewModel::class.java)
-    }
-
-    private fun initializeDataBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ) {
-        dataBinding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false)
-        dataBinding.viewModel = viewModel
     }
 
     companion object {

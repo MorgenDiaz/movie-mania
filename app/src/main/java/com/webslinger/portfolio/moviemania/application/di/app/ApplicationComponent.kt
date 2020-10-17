@@ -1,11 +1,15 @@
 package com.webslinger.portfolio.moviemania.application.di.app
 
+import com.webslinger.portfolio.moviemania.application.di.data.datamapping.MovieDataMappingModule
 import com.webslinger.portfolio.moviemania.application.di.infrastructure.DatabaseModule
 import com.webslinger.portfolio.moviemania.application.di.infrastructure.NetworkModule
 import com.webslinger.portfolio.moviemania.application.di.data.RepositoryModule
+import com.webslinger.portfolio.moviemania.application.di.data.datamapping.CharacterDataMappingModule
+import com.webslinger.portfolio.moviemania.application.di.data.datamapping.KnownForDataMappingModule
+import com.webslinger.portfolio.moviemania.application.di.data.datamapping.TvShowDataMappingModule
 import com.webslinger.portfolio.moviemania.application.di.domain.UseCaseModule
 import com.webslinger.portfolio.moviemania.application.di.domain.character.CharacterComponent
-import com.webslinger.portfolio.moviemania.application.di.data.datasource.CacheDataSource
+import com.webslinger.portfolio.moviemania.application.di.data.datasource.CacheDataSourceModule
 import com.webslinger.portfolio.moviemania.application.di.data.datasource.LocalDataSourceModule
 import com.webslinger.portfolio.moviemania.application.di.data.datasource.RemoteDataSourceModule
 import com.webslinger.portfolio.moviemania.application.di.domain.home.HomeComponent
@@ -22,7 +26,11 @@ import javax.inject.Singleton
         DatabaseModule::class,
         RemoteDataSourceModule::class,
         LocalDataSourceModule::class,
-        CacheDataSource::class,
+        CacheDataSourceModule::class,
+        MovieDataMappingModule::class,
+        TvShowDataMappingModule::class,
+        KnownForDataMappingModule::class,
+        CharacterDataMappingModule::class,
         RepositoryModule::class,
         UseCaseModule::class
     ]

@@ -27,13 +27,13 @@ class RepositoryModule {
     fun provideMovieRepository(
         movieRemoteDataSource: MovieRemoteDataSource,
         movieLocalDataSource: MovieLocalDataSource,
-        movieCahceDataSource: MovieCahceDataSource,
+        movieCacheDataSource: MovieCahceDataSource,
         movieListMapper: MovieListMapper
     ): MovieRepository{
         return MovieRepository(
             movieRemoteDataSource,
             movieLocalDataSource,
-            movieCahceDataSource,
+            movieCacheDataSource,
             movieListMapper
         )
     }

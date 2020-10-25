@@ -5,11 +5,11 @@ import com.webslinger.portfolio.moviemania.BuildConfig
 import com.webslinger.portfolio.moviemania.application.di.Injector
 import com.webslinger.portfolio.moviemania.application.di.app.ApplicationModule
 import com.webslinger.portfolio.moviemania.application.di.app.DaggerApplicationComponent
-import com.webslinger.portfolio.moviemania.application.di.domain.character.CharacterComponent
+import com.webslinger.portfolio.moviemania.application.di.app.core.actor.ActorComponent
 import com.webslinger.portfolio.moviemania.application.di.data.datasource.RemoteDataSourceModule
-import com.webslinger.portfolio.moviemania.application.di.domain.home.HomeComponent
-import com.webslinger.portfolio.moviemania.application.di.domain.movie.MovieComponent
-import com.webslinger.portfolio.moviemania.application.di.domain.tvshow.TvShowComponent
+import com.webslinger.portfolio.moviemania.application.di.app.core.home.HomeComponent
+import com.webslinger.portfolio.moviemania.application.di.app.core.movie.MovieComponent
+import com.webslinger.portfolio.moviemania.application.di.app.core.tvshow.TvShowComponent
 
 class MovieManiaApplication: Application(), Injector {
     private val applicationComponent by lazy {
@@ -36,7 +36,7 @@ class MovieManiaApplication: Application(), Injector {
         return applicationComponent.tvShowComponent().create()
     }
 
-    override fun createCharacterComponent(): CharacterComponent {
-        return applicationComponent.characterComponent().create()
+    override fun createActorComponent(): ActorComponent {
+        return applicationComponent.actorComponent().create()
     }
 }

@@ -1,10 +1,10 @@
 package com.webslinger.portfolio.moviemania.application.di.domain
 
-import com.webslinger.portfolio.moviemania.data.repository.character.CharacterRepository
+import com.webslinger.portfolio.moviemania.data.repository.actor.ActorRepository
 import com.webslinger.portfolio.moviemania.data.repository.movie.MovieRepository
 import com.webslinger.portfolio.moviemania.data.repository.tvshow.TvShowRepository
-import com.webslinger.portfolio.moviemania.domain.usecase.character.GetCharactersUseCase
-import com.webslinger.portfolio.moviemania.domain.usecase.character.UpdateCharactersUseCase
+import com.webslinger.portfolio.moviemania.domain.usecase.actor.GetActorsUseCase
+import com.webslinger.portfolio.moviemania.domain.usecase.actor.UpdateActorsUseCase
 import com.webslinger.portfolio.moviemania.domain.usecase.movie.GetMoviesUseCase
 import com.webslinger.portfolio.moviemania.domain.usecase.movie.UpdateMoviesUseCase
 import com.webslinger.portfolio.moviemania.domain.usecase.tvshow.GetTvShowsUseCase
@@ -35,12 +35,12 @@ class UseCaseModule {
     }
 
     @Provides
-    fun provideGetCharactersUseCase(charactersRepository: CharacterRepository): GetCharactersUseCase{
-        return GetCharactersUseCase(charactersRepository)
+    fun provideGetActorsUseCase(charactersRepository: ActorRepository): GetActorsUseCase{
+        return GetActorsUseCase(charactersRepository)
     }
 
     @Provides
-    fun provideUpdateCharactersUseCase(charactersRepository: CharacterRepository): UpdateCharactersUseCase{
-        return UpdateCharactersUseCase(charactersRepository)
+    fun provideUpdateActorsUseCase(charactersRepository: ActorRepository): UpdateActorsUseCase{
+        return UpdateActorsUseCase(charactersRepository)
     }
 }

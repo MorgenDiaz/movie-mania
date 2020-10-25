@@ -1,7 +1,7 @@
 package com.webslinger.portfolio.moviemania.application.di.infrastructure
 
 import com.webslinger.portfolio.moviemania.data.networking.TheMovieDbRetrofitServerProducer
-import com.webslinger.portfolio.moviemania.data.networking.endpoints.CharacterService
+import com.webslinger.portfolio.moviemania.data.networking.endpoints.ActorService
 import com.webslinger.portfolio.moviemania.data.networking.endpoints.MovieService
 import com.webslinger.portfolio.moviemania.data.networking.endpoints.TvShowService
 import dagger.Module
@@ -31,8 +31,8 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideCharacterService(tmdbRetrofitServer: Retrofit): CharacterService{
-        return tmdbRetrofitServer.create(CharacterService::class.java)
+    fun provideActorService(tmdbRetrofitServer: Retrofit): ActorService{
+        return tmdbRetrofitServer.create(ActorService::class.java)
     }
 
 

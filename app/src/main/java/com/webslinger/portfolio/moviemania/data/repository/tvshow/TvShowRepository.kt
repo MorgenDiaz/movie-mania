@@ -7,7 +7,7 @@ import com.webslinger.portfolio.moviemania.data.networking.model.tvshow.NetworkT
 import com.webslinger.portfolio.moviemania.data.repository.tvshow.idatasource.ITvShowCacheDataSource
 import com.webslinger.portfolio.moviemania.data.repository.tvshow.idatasource.ITvShowLocalDataSource
 import com.webslinger.portfolio.moviemania.data.repository.tvshow.idatasource.ITvShowRemoteDataSource
-import com.webslinger.portfolio.moviemania.domain.TvShow
+import com.webslinger.portfolio.moviemania.domain.model.TvShow
 import com.webslinger.portfolio.moviemania.domain.repository.ITvShowRepository
 
 class TvShowRepository(

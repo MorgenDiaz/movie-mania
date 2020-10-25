@@ -1,10 +1,10 @@
 package com.webslinger.portfolio.moviemania.application.di.app
 
 import android.content.Context
-import com.webslinger.portfolio.moviemania.application.di.domain.character.CharacterComponent
-import com.webslinger.portfolio.moviemania.application.di.domain.home.HomeComponent
-import com.webslinger.portfolio.moviemania.application.di.domain.movie.MovieComponent
-import com.webslinger.portfolio.moviemania.application.di.domain.tvshow.TvShowComponent
+import com.webslinger.portfolio.moviemania.application.di.app.core.actor.ActorComponent
+import com.webslinger.portfolio.moviemania.application.di.app.core.home.HomeComponent
+import com.webslinger.portfolio.moviemania.application.di.app.core.movie.MovieComponent
+import com.webslinger.portfolio.moviemania.application.di.app.core.tvshow.TvShowComponent
 import dagger.Module
 import dagger.Provides
 
@@ -13,7 +13,7 @@ import dagger.Provides
         HomeComponent::class,
         MovieComponent::class,
         TvShowComponent::class,
-        CharacterComponent::class
+        ActorComponent::class
     ]
 )
 class ApplicationModule(private val context: Context) {

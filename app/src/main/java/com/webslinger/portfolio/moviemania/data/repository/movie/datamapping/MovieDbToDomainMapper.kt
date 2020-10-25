@@ -2,8 +2,7 @@ package com.webslinger.portfolio.moviemania.data.repository.movie.datamapping
 
 import com.webslinger.portfolio.moviemania.data.datamapping.movie.IMovieDbToDomainMapper
 import com.webslinger.portfolio.moviemania.data.db.movie.DBMovie
-import com.webslinger.portfolio.moviemania.domain.Movie
-import javax.inject.Inject
+import com.webslinger.portfolio.moviemania.domain.model.Movie
 
 class MovieDbToDomainMapper: IMovieDbToDomainMapper {
     override fun map(input: DBMovie): Movie {

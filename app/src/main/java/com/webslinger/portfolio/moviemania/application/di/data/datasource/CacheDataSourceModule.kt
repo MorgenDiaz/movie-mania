@@ -1,6 +1,6 @@
 package com.webslinger.portfolio.moviemania.application.di.data.datasource
 
-import com.webslinger.portfolio.moviemania.data.repository.character.datasource.CharacterCacheDataSource
+import com.webslinger.portfolio.moviemania.data.repository.actor.datasource.ActorCacheDataSource
 import com.webslinger.portfolio.moviemania.data.repository.movie.datasource.MovieCahceDataSource
 import com.webslinger.portfolio.moviemania.data.repository.tvshow.datasource.TvShowCacheDataSource
 import dagger.Module
@@ -23,7 +23,7 @@ class CacheDataSourceModule {
 
     @Singleton
     @Provides
-    fun provideCharacterCacheDataSource(): CharacterCacheDataSource{
-        return CharacterCacheDataSource()
+    fun provideActorCacheDataSource(): ActorCacheDataSource{
+        return ActorCacheDataSource()
     }
 }

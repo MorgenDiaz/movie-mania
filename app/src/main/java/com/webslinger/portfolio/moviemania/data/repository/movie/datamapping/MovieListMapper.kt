@@ -4,7 +4,7 @@ import com.webslinger.portfolio.moviemania.data.datamapping.movie.IMovieListMapp
 import com.webslinger.portfolio.moviemania.data.datamapping.movie.IMovieMapper
 import com.webslinger.portfolio.moviemania.data.db.movie.DBMovie
 import com.webslinger.portfolio.moviemania.data.networking.model.movie.NetworkMovie
-import com.webslinger.portfolio.moviemania.domain.Movie
+import com.webslinger.portfolio.moviemania.domain.model.Movie
 
 class MovieListMapper(
     private val movieMapper: IMovieMapper

@@ -3,16 +3,18 @@ package com.webslinger.portfolio.moviemania.application.viewmodel.movies
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.webslinger.portfolio.moviemania.domain.Movie
+import com.webslinger.portfolio.moviemania.application.viewmodel.TmdbImageLoader
+import com.webslinger.portfolio.moviemania.domain.model.Movie
 import com.webslinger.portfolio.moviemania.domain.usecase.movie.GetMoviesUseCase
 import com.webslinger.portfolio.moviemania.domain.usecase.movie.UpdateMoviesUseCase
 
 class MoviesViewModel(
     private val getMoviesUseCase: GetMoviesUseCase,
-    private val updateMoviesUseCase: UpdateMoviesUseCase
+    private val updateMoviesUseCase: UpdateMoviesUseCase,
+    val tmdbImageLoader: TmdbImageLoader
 ) : ViewModel() {
 
-    fun getMovies(): LiveData<List<Movie>?>{
+    fun getMovies(): LiveData<List<Movie>>{
         return liveData{
             val movies = getMoviesUseCase.execute()
             emit(movies)

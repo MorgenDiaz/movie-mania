@@ -6,7 +6,7 @@ import com.webslinger.portfolio.moviemania.data.networking.model.movie.NetworkMo
 import com.webslinger.portfolio.moviemania.data.repository.movie.idatasource.IMovieCacheDataSource
 import com.webslinger.portfolio.moviemania.data.repository.movie.idatasource.IMovieLocalDataSource
 import com.webslinger.portfolio.moviemania.data.repository.movie.idatasource.IMovieRemoteDataSource
-import com.webslinger.portfolio.moviemania.domain.Movie
+import com.webslinger.portfolio.moviemania.domain.model.Movie
 import com.webslinger.portfolio.moviemania.domain.repository.IMovieRepository
 import java.lang.Exception
 

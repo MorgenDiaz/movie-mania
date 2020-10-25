@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.webslinger.portfolio.moviemania.data.db.character.CharacterDAO
-import com.webslinger.portfolio.moviemania.data.db.character.DBCharacter
-import com.webslinger.portfolio.moviemania.data.db.character.DBKnownFor
+import com.webslinger.portfolio.moviemania.data.db.actor.ActorDAO
+import com.webslinger.portfolio.moviemania.data.db.actor.DBActor
+import com.webslinger.portfolio.moviemania.data.db.actor.DBActorDetails
+import com.webslinger.portfolio.moviemania.data.db.actor.DBKnownFor
 import com.webslinger.portfolio.moviemania.data.db.movie.DBMovie
 import com.webslinger.portfolio.moviemania.data.db.movie.MovieDAO
 import com.webslinger.portfolio.moviemania.data.db.tvshow.DBTvShow
@@ -17,10 +18,11 @@ import com.webslinger.portfolio.moviemania.data.db.tvshow.TvShowDAO
     entities = [
         DBMovie::class,
         DBTvShow::class,
-        DBCharacter::class,
-        DBKnownFor::class
+        DBActor::class,
+        DBKnownFor::class,
+        DBActorDetails::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 
@@ -29,7 +31,7 @@ import com.webslinger.portfolio.moviemania.data.db.tvshow.TvShowDAO
 abstract class MovieManiaDB: RoomDatabase() {
     abstract val movieDAO: MovieDAO
     abstract val tvShowDAO: TvShowDAO
-    abstract val characterDAO: CharacterDAO
+    abstract val actorDAO: ActorDAO
 
     companion object{
         @Volatile
@@ -43,8 +45,8 @@ abstract class MovieManiaDB: RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         MovieManiaDB::class.java,
-                        "movie_mania_db"
-                    ).build()
+                        "movie_mania_db",
+                    ).fallbackToDestructiveMigration().build()
                 }
 
                 return instance

@@ -14,7 +14,7 @@ class HomeViewModel(private val navController: NavController) : ViewModel() {
 
     }
 
-    fun navigateToCharactersScreen(){
-        navController.navigate(R.id.action_homeFragment_to_charactersFragment)
+    fun navigateToActorsScreen(){
+        navController.navigate(R.id.action_homeFragment_to_actorsFragment)
     }
 }

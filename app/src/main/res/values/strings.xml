@@ -2,5 +2,5 @@
     <string name="app_name">Movie Mania</string>
     <string name="movies">Movies</string>
     <string name="tv_shows">Tv Shows</string>
-    <string name="characters">Characters</string>
+    <string name="actors">Actors</string>
 </resources>

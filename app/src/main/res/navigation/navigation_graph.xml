@@ -17,8 +17,8 @@
             android:id="@+id/action_homeFragment_to_tvShowsFragment"
             app:destination="@id/tvShowsFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_charactersFragment"
-            app:destination="@id/charactersFragment" />
+            android:id="@+id/action_homeFragment_to_actorsFragment"
+            app:destination="@id/actorsFragment" />
     </fragment>
     <fragment
         android:id="@+id/moviesFragment"
@@ -31,8 +31,8 @@
         android:label="tv_shows_fragment"
         tools:layout="@layout/tv_shows_fragment" />
     <fragment
-        android:id="@+id/charactersFragment"
-        android:name="com.webslinger.portfolio.moviemania.presentation.characters.CharactersFragment"
-        android:label="characters_fragment"
-        tools:layout="@layout/characters_fragment" />
+        android:id="@+id/actorsFragment"
+        android:name="com.webslinger.portfolio.moviemania.presentation.actors.ActorsFragment"
+        android:label="actors_fragment"
+        tools:layout="@layout/actors_fragment" />
 </navigation>

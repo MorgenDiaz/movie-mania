@@ -1,10 +1,10 @@
 package com.webslinger.portfolio.moviemania.application.di.data
 
-import com.webslinger.portfolio.moviemania.data.repository.character.CharacterRepository
-import com.webslinger.portfolio.moviemania.data.repository.character.datasource.CharacterCacheDataSource
-import com.webslinger.portfolio.moviemania.data.repository.character.datasource.CharacterLocalDataSource
-import com.webslinger.portfolio.moviemania.data.repository.character.datasource.CharacterRemoteDataSource
-import com.webslinger.portfolio.moviemania.data.repository.character.idatamapping.CharacterListMapper
+import com.webslinger.portfolio.moviemania.data.repository.actor.ActorRepository
+import com.webslinger.portfolio.moviemania.data.repository.actor.datasource.ActorCacheDataSource
+import com.webslinger.portfolio.moviemania.data.repository.actor.datasource.ActorLocalDataSource
+import com.webslinger.portfolio.moviemania.data.repository.actor.datasource.ActorRemoteDataSource
+import com.webslinger.portfolio.moviemania.data.repository.actor.datamapping.ActorListMapper
 import com.webslinger.portfolio.moviemania.data.repository.movie.MovieRepository
 import com.webslinger.portfolio.moviemania.data.repository.movie.datamapping.MovieListMapper
 import com.webslinger.portfolio.moviemania.data.repository.movie.datasource.MovieCahceDataSource
@@ -56,16 +56,16 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideCharacterRepository(
-        characterRemoteDataSource: CharacterRemoteDataSource,
-        characterLocalDataSource: CharacterLocalDataSource,
-        characterCacheDataSource: CharacterCacheDataSource,
-        characterListMapper: CharacterListMapper
-    ): CharacterRepository{
-        return CharacterRepository(
+    fun provideActorRepository(
+        characterRemoteDataSource: ActorRemoteDataSource,
+        actorLocalDataSource: ActorLocalDataSource,
+        actorCacheDataSource: ActorCacheDataSource,
+        characterListMapper: ActorListMapper
+    ): ActorRepository{
+        return ActorRepository(
             characterRemoteDataSource,
-            characterLocalDataSource,
-            characterCacheDataSource,
+            actorLocalDataSource,
+            actorCacheDataSource,
             characterListMapper
         )
     }

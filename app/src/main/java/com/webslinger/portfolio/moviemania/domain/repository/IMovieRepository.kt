@@ -1,6 +1,6 @@
 package com.webslinger.portfolio.moviemania.domain.repository
 
-import com.webslinger.portfolio.moviemania.domain.Movie
+import com.webslinger.portfolio.moviemania.domain.model.Movie
 
 interface IMovieRepository {
     suspend fun getMovies(): List<Movie>

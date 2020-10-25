@@ -1,7 +1,7 @@
 package com.webslinger.portfolio.moviemania.data.repository.tvshow.datasource
 
 import com.webslinger.portfolio.moviemania.data.repository.tvshow.idatasource.ITvShowCacheDataSource
-import com.webslinger.portfolio.moviemania.domain.TvShow
+import com.webslinger.portfolio.moviemania.domain.model.TvShow
 
 class TvShowCacheDataSource: ITvShowCacheDataSource {
     private var cachedTvShows: MutableList<TvShow> = mutableListOf()

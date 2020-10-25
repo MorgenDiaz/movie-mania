@@ -2,7 +2,7 @@ package com.webslinger.portfolio.moviemania.application.di.infrastructure
 
 import android.content.Context
 import com.webslinger.portfolio.moviemania.data.db.MovieManiaDB
-import com.webslinger.portfolio.moviemania.data.db.character.CharacterDAO
+import com.webslinger.portfolio.moviemania.data.db.actor.ActorDAO
 import com.webslinger.portfolio.moviemania.data.db.movie.MovieDAO
 import com.webslinger.portfolio.moviemania.data.db.tvshow.TvShowDAO
 import dagger.Module
@@ -31,8 +31,8 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideCharacterDAO(movieManiaDB: MovieManiaDB):CharacterDAO{
-        return movieManiaDB.characterDAO
+    fun provideActorDAO(movieManiaDB: MovieManiaDB):ActorDAO{
+        return movieManiaDB.actorDAO
     }
 
 }

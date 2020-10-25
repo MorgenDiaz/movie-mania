@@ -1,6 +1,6 @@
 package com.webslinger.portfolio.moviemania.domain.repository
 
-import com.webslinger.portfolio.moviemania.domain.TvShow
+import com.webslinger.portfolio.moviemania.domain.model.TvShow
 
 interface ITvShowRepository {
     suspend fun getTvShows(): List<TvShow>

@@ -16,13 +16,13 @@
         tools:context=".presentation.home.HomeFragment">
 
         <Button
-            android:id="@+id/characters_button"
+            android:id="@+id/actors_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
-            android:text="@string/characters"
-            android:onClick="@{()-> viewModel.navigateToCharactersScreen()}"
+            android:text="@string/actors"
+            android:onClick="@{()-> viewModel.navigateToActorsScreen()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -37,7 +37,7 @@
             android:layout_marginTop="32dp"
             android:text="@string/tv_shows"
             android:onClick="@{()-> viewModel.navigateToTvShowsScreen()}"
-            app:layout_constraintBottom_toTopOf="@+id/characters_button"
+            app:layout_constraintBottom_toTopOf="@+id/actors_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"

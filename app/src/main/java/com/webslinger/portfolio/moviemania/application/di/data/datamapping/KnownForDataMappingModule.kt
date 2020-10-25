@@ -1,8 +1,8 @@
 package com.webslinger.portfolio.moviemania.application.di.data.datamapping
 
-import com.webslinger.portfolio.moviemania.data.repository.character.idatamapping.knownfor.KnownForDbToDomainMapper
-import com.webslinger.portfolio.moviemania.data.repository.character.idatamapping.knownfor.KnownForMapper
-import com.webslinger.portfolio.moviemania.data.repository.character.idatamapping.knownfor.KnownForNetworkToDbMapper
+import com.webslinger.portfolio.moviemania.data.repository.actor.datamapping.knownfor.KnownForDbToDomainMapper
+import com.webslinger.portfolio.moviemania.data.repository.actor.datamapping.knownfor.KnownForMapper
+import com.webslinger.portfolio.moviemania.data.repository.actor.datamapping.knownfor.KnownForNetworkToDbMapper
 import dagger.Module
 import dagger.Provides
 

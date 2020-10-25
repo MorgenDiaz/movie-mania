@@ -1,7 +1,7 @@
 package com.webslinger.portfolio.moviemania.data.repository.movie.datasource
 
 import com.webslinger.portfolio.moviemania.data.repository.movie.idatasource.IMovieCacheDataSource
-import com.webslinger.portfolio.moviemania.domain.Movie
+import com.webslinger.portfolio.moviemania.domain.model.Movie
 
 class MovieCahceDataSource: IMovieCacheDataSource {
     private val movieCache: MutableList<Movie> = mutableListOf()

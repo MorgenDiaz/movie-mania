@@ -6,15 +6,21 @@ import com.webslinger.portfolio.moviemania.data.networking.model.actor.NetworkAc
 import com.webslinger.portfolio.moviemania.data.networking.model.actor.NetworkActorDTO
 import com.webslinger.portfolio.moviemania.data.networking.model.actor.NetworkActorDetails
 import com.webslinger.portfolio.moviemania.data.repository.actor.idatasource.IActorRemoteDataSource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
 
-class ActorRemoteDataSource(private val actorService: ActorService, private val apiKey: String):
+class ActorRemoteDataSource(
+    private val actorService: ActorService,
+    private val apiKey: String
+) :
     IActorRemoteDataSource {
-    override suspend fun getActors(): List<NetworkActorDTO>{
+    override suspend fun getActors(): List<NetworkActorDTO> {
         val popularActors = getPopularActors()
         return createActorDTOs(popularActors)
     }
 
-    private suspend fun getPopularActors(): List<NetworkActor>{
+    private suspend fun getPopularActors(): List<NetworkActor> {
         var networkActors: List<NetworkActor> = listOf()
 
         try {
@@ -24,8 +30,7 @@ class ActorRemoteDataSource(private val actorService: ActorService, private val 
             responseBody?.let {
                 networkActors = it.networkActors
             }
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             Log.i("MovieMania", "Error downloading actors from network.")
         }
 
@@ -35,20 +40,30 @@ class ActorRemoteDataSource(private val actorService: ActorService, private val 
     private suspend fun createActorDTOs(popularActors: List<NetworkActor>): List<NetworkActorDTO> {
         val actors: MutableList<NetworkActorDTO> = mutableListOf()
 
-        popularActors.forEach() {
-            val actorDetails = getActorDetails(it.id)
-            actors.add(
-                NetworkActorDTO(
-                    it,
-                    actorDetails
-                )
-            )
+        withContext(Dispatchers.IO) {
+            popularActors.forEach() {
+                synchronized(this) {
+                    async {
+                        Log.i("TMDB Thread", "getting details from actor ${Thread.currentThread()}")
+                        val actorDetails = getActorDetails(it.id)
+
+                        actors.add(
+                            NetworkActorDTO(
+                                it,
+                                actorDetails
+                            )
+                        )
+                    }
+                }
+
+            }
+
         }
 
         return actors
     }
 
-    private suspend fun getActorDetails(actorId: Int): NetworkActorDetails{
+    private suspend fun getActorDetails(actorId: Int): NetworkActorDetails {
         var networkActorDetails = NetworkActorDetails.EMPTY_ACTOR
 
         try {
@@ -58,8 +73,7 @@ class ActorRemoteDataSource(private val actorService: ActorService, private val 
             responseBody?.let {
                 networkActorDetails = it
             }
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             Log.i("MovieMania", "Error downloading actor details from network.")
         }
 

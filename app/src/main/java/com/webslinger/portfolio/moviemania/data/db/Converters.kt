@@ -1,6 +1,7 @@
 package com.webslinger.portfolio.moviemania.data.db
 
 import androidx.room.TypeConverter
+import org.json.JSONException
 import org.json.JSONObject
 
 class Converters {
@@ -27,10 +28,15 @@ class Converters {
 
     @TypeConverter
     fun fromJsonStringToStrings(value: String?): List<String>?{
-        val jsonStrings = JSONObject(value).getJSONArray("strings")
+        try {
+            val jsonStrings = JSONObject(value).getJSONArray("strings")
 
-        return List<String>(jsonStrings.length()){
-            jsonStrings.getString(it)
+            return List<String>(jsonStrings.length()) {
+                jsonStrings.getString(it)
+            }
+        }
+        catch (e: JSONException){
+            return listOf()
         }
     }
 }

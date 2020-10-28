@@ -1,9 +1,7 @@
 package com.webslinger.portfolio.moviemania.presentation.actors
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +22,11 @@ class ActorsFragment : BaseFragment() {
         ActorsViewAdapter(viewModel.tmdbImageLoader)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,19 +41,46 @@ class ActorsFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.update, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_update ->{
+                showProgressBar()
+                viewModel.updateActors()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         injector.createActorComponent().inject(this)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ActorsViewModel::class.java)
 
+        initActorsRecyclerView()
+
+        showProgressBar()
+        viewModel.retrieveActors()
+    }
+
+    private fun initActorsRecyclerView() {
         binding.actorsRecyclerView.apply {
             adapter = actorsViewAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        showProgressBar()
-        viewModel.getActors().observe(requireActivity(), Observer { actors ->
+        bindActors()
+    }
+
+    private fun bindActors() {
+        viewModel.actors.observe(requireActivity(), Observer { actors ->
             actorsViewAdapter.bindActors(actors)
+            binding.actorsRecyclerView.scrollToPosition(0)
+            binding.actorsProgressBar.visibility = View.GONE
         })
     }
 

@@ -14,7 +14,7 @@ class ActorItemViewHolder(
 
         loadActorImage(actor.profilePath)
 
-        binding.descriptionTextView.text = actor.knownFor[0].overview
+        binding.descriptionTextView.text = actor.biography
     }
 
     private fun loadActorImage(imagePath:String) {

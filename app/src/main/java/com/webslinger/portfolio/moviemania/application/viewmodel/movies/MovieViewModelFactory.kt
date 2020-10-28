@@ -9,6 +9,7 @@ import com.webslinger.portfolio.moviemania.domain.usecase.movie.UpdateMoviesUseC
 class MovieViewModelFactory(
     private val getMoviesUseCase: GetMoviesUseCase,
     private val updateMoviesUseCase: UpdateMoviesUseCase,
+    private val moviesScreenStateController: MoviesScreenStateController,
     private val tmdbImageLoader: TmdbImageLoader
 ): ViewModelProvider.Factory {
 
@@ -17,6 +18,7 @@ class MovieViewModelFactory(
             return MoviesViewModel(
                 getMoviesUseCase,
                 updateMoviesUseCase,
+                moviesScreenStateController,
                 tmdbImageLoader
             ) as T
         }

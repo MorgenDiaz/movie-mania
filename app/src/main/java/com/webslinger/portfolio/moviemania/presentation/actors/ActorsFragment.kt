@@ -62,9 +62,7 @@ class ActorsFragment : BaseFragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(ActorsViewModel::class.java)
 
         initActorsRecyclerView()
-
-        showProgressBar()
-        viewModel.retrieveActors()
+        loadActors()
     }
 
     private fun initActorsRecyclerView() {
@@ -82,6 +80,11 @@ class ActorsFragment : BaseFragment() {
             binding.actorsRecyclerView.scrollToPosition(0)
             binding.actorsProgressBar.visibility = View.GONE
         })
+    }
+
+    private fun loadActors() {
+        showProgressBar()
+        viewModel.retrieveActors()
     }
 
     private fun showProgressBar(){

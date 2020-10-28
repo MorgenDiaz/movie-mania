@@ -49,10 +49,7 @@ class MoviesFragment : BaseFragment() {
         when(item.itemId){
             R.id.action_update-> {
                 showProgressBar()
-
-                viewModel.updateMovies().observe(this, Observer {movies ->
-                    loadMovies(moviesViewAdapter, movies)
-                })
+                viewModel.updateMovies()
             }
         }
 
@@ -67,7 +64,7 @@ class MoviesFragment : BaseFragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(MoviesViewModel::class.java)
 
         initializeMoviesRecyclerView()
-
+        loadMovies()
     }
 
     private fun showProgressBar() {
@@ -78,19 +75,20 @@ class MoviesFragment : BaseFragment() {
         binding.moviesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.moviesRecyclerView.adapter = moviesViewAdapter
 
-        showProgressBar()
-        viewModel.getMovies().observe(requireActivity(), Observer { movies ->
-            loadMovies(moviesViewAdapter, movies)
+        bindMovies()
+    }
+
+    private fun bindMovies() {
+        viewModel.movies.observe(requireActivity(), Observer { movies ->
+            binding.moviesProgressBar.visibility = View.GONE
+            moviesViewAdapter.bindMovies(movies)
+            binding.moviesRecyclerView.scrollToPosition(0)
         })
     }
 
-    private fun loadMovies(
-        moviesViewAdapter: MoviesViewAdapter,
-        it: List<Movie>
-    ) {
-        binding.moviesProgressBar.visibility = View.GONE
-        moviesViewAdapter.bindMovies(it)
-        binding.moviesRecyclerView.scrollToPosition(0)
+    private fun loadMovies() {
+        showProgressBar()
+        viewModel.retrieveMovies()
     }
 
     companion object {

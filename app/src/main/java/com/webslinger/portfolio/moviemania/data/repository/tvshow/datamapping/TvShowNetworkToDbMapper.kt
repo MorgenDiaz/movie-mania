@@ -4,11 +4,13 @@ import com.webslinger.portfolio.moviemania.data.datamapping.tvshow.ITvShowNetwor
 import com.webslinger.portfolio.moviemania.data.db.tvshow.DBTvShow
 import com.webslinger.portfolio.moviemania.data.networking.model.tvshow.NetworkTVShow
 
+private const val NA = "N/A"
+
 class TvShowNetworkToDbMapper: ITvShowNetworkToDbMapper {
     override fun map(input: NetworkTVShow): DBTvShow {
         input.apply {
             return DBTvShow(
-                backdropPath,
+                backdropPath ?: NA,
                 firstAirDate,
                 genreIds,
                 id,

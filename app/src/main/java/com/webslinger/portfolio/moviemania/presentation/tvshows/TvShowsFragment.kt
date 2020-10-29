@@ -50,9 +50,7 @@ class TvShowsFragment : BaseFragment() {
         when(item.itemId){
             R.id.action_update -> {
                 showProgressBar()
-                viewModel.updateTvShows().observe(this, Observer { tvShows ->
-                    loadTvShows(tvShows)
-                })
+                viewModel.updateTvShows()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -64,26 +62,31 @@ class TvShowsFragment : BaseFragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(TvShowsViewModel::class.java)
 
         initializeTvShowRecycler()
+        loadTvShows()
     }
 
     private fun initializeTvShowRecycler() {
-        showProgressBar()
         binding.tvShowsRecyclerView.adapter = tvShowsAdapter
         binding.tvShowsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.getTvShows().observe(requireActivity(), Observer { tvShows ->
-            loadTvShows(tvShows)
+        bindTvShows()
+    }
+
+    private fun bindTvShows() {
+        viewModel.tvShows.observe(requireActivity(), Observer { tvShows ->
+            binding.tvShowProgressBar.visibility = View.GONE
+            tvShowsAdapter.bindTvShows(tvShows)
+            binding.tvShowsRecyclerView.scrollToPosition(0)
         })
+    }
+
+    private fun loadTvShows(){
+        showProgressBar()
+        viewModel.retrieveTvShows()
     }
 
     private fun showProgressBar() {
         binding.tvShowProgressBar.visibility = View.VISIBLE
-    }
-
-    private fun loadTvShows(tvShows: List<TvShow>) {
-        binding.tvShowProgressBar.visibility = View.GONE
-        tvShowsAdapter.bindTvShows(tvShows)
-        binding.tvShowsRecyclerView.scrollToPosition(0)
     }
 
     companion object {

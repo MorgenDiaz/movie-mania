@@ -10,6 +10,7 @@ import com.webslinger.portfolio.moviemania.application.di.data.datasource.Remote
 import com.webslinger.portfolio.moviemania.application.di.app.core.home.HomeComponent
 import com.webslinger.portfolio.moviemania.application.di.app.core.movie.MovieComponent
 import com.webslinger.portfolio.moviemania.application.di.app.core.tvshow.TvShowComponent
+import timber.log.Timber
 
 class MovieManiaApplication: Application(), Injector {
     private val applicationComponent by lazy {
@@ -21,7 +22,7 @@ class MovieManiaApplication: Application(), Injector {
 
     override fun onCreate() {
         super.onCreate()
-
+        Timber.plant(Timber.DebugTree())
     }
 
     override fun createHomeComponent(): HomeComponent {

@@ -9,6 +9,7 @@ import com.webslinger.portfolio.moviemania.data.repository.actor.idatasource.IAc
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class ActorRemoteDataSource(
     private val actorService: ActorService,
@@ -31,7 +32,7 @@ class ActorRemoteDataSource(
                 networkActors = it.networkActors
             }
         } catch (e: Exception) {
-            Log.i("MovieMania", "Error downloading actors from network.")
+            Timber.e(e, "Error downloading actors from network.")
         }
 
         return networkActors
@@ -44,7 +45,6 @@ class ActorRemoteDataSource(
             popularActors.forEach() {
                 synchronized(this) {
                     async {
-                        Log.i("TMDB Thread", "getting details from actor ${Thread.currentThread()}")
                         val actorDetails = getActorDetails(it.id)
 
                         actors.add(
@@ -74,7 +74,7 @@ class ActorRemoteDataSource(
                 networkActorDetails = it
             }
         } catch (e: Exception) {
-            Log.i("MovieMania", "Error downloading actor details from network.")
+            Timber.e(e, "Error downloading actor details from network.")
         }
 
         return networkActorDetails

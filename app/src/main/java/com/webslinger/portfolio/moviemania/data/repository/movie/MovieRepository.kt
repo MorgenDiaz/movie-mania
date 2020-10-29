@@ -8,6 +8,7 @@ import com.webslinger.portfolio.moviemania.data.repository.movie.idatasource.IMo
 import com.webslinger.portfolio.moviemania.data.repository.movie.idatasource.IMovieRemoteDataSource
 import com.webslinger.portfolio.moviemania.domain.model.Movie
 import com.webslinger.portfolio.moviemania.domain.repository.IMovieRepository
+import timber.log.Timber
 import java.lang.Exception
 
 class MovieRepository(
@@ -60,7 +61,7 @@ class MovieRepository(
             }
         }
         catch (e: Exception){
-            Log.i("MovieMania", "Error downloading movies.")
+            Timber.e(e, "Error downloading movies from network.")
         }
 
         return networkMovies
@@ -73,7 +74,7 @@ class MovieRepository(
             movies = movieListMapper.dbToDomainModel(dbMovies)
         }
         catch (e: Exception){
-            Log.i("MovieMania", "Error retrieving movies from database.")
+            Timber.e(e, "Error retrieving movies from database.")
         }
 
         return movies

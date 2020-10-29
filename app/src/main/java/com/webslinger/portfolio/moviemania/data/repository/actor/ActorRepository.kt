@@ -12,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class ActorRepository(
     private val remoteDataSource: IActorRemoteDataSource,
@@ -64,7 +65,7 @@ class ActorRepository(
             val dbActors = localDataSource.getActors()
             actors = actorListMapper.dbToDomainModel(dbActors)
         } catch (e: Exception) {
-            Log.i("MovieMania", "Error retrieving actors from database.")
+            Timber.e(e, "Error retrieving actors from database.")
         }
 
         return actors

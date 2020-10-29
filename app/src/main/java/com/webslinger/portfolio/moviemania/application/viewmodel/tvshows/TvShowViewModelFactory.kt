@@ -10,6 +10,7 @@ import javax.inject.Inject
 class TvShowViewModelFactory(
     private val getTvShowsUseCase: GetTvShowsUseCase,
     private val updateTvShowsUseCase: UpdateTvShowsUseCase,
+    private val tvShowsScreenStateController: TvShowsScreenStateController,
     private val tmdbImageLoader: TmdbImageLoader
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -17,6 +18,7 @@ class TvShowViewModelFactory(
             return TvShowsViewModel(
                 getTvShowsUseCase,
                 updateTvShowsUseCase,
+                tvShowsScreenStateController,
                 tmdbImageLoader
             ) as T
         }

@@ -9,23 +9,27 @@ import com.webslinger.portfolio.moviemania.data.repository.tvshow.idatasource.IT
 import com.webslinger.portfolio.moviemania.data.repository.tvshow.idatasource.ITvShowRemoteDataSource
 import com.webslinger.portfolio.moviemania.domain.model.TvShow
 import com.webslinger.portfolio.moviemania.domain.repository.ITvShowRepository
+import timber.log.Timber
 
 class TvShowRepository(
     private val tvShowRemoteDataSource: ITvShowRemoteDataSource,
     private val tvShowLocalDataSource: ITvShowLocalDataSource,
     private val tvShowCacheDataSource: ITvShowCacheDataSource,
     private val tvShowListMapper: ITvShowListMapper
-): ITvShowRepository{
+) : ITvShowRepository {
     override suspend fun getTvShows(): List<TvShow> {
         val cachedTVShows = tvShowCacheDataSource.getTvShows()
 
-        if(cachedTVShows.isEmpty()){
+        if (cachedTVShows.isEmpty()) {
             val dbTvShows = getTvShowsFromDataBase()
 
-            if(dbTvShows.isEmpty()){
+            if (dbTvShows.isNotEmpty()) {
+                tvShowCacheDataSource.updateTvShows(dbTvShows)
+            }else{
                 downloadTvShows()
-                return tvShowCacheDataSource.getTvShows()
             }
+
+            return tvShowCacheDataSource.getTvShows()
 
         }
 
@@ -37,7 +41,7 @@ class TvShowRepository(
         return tvShowCacheDataSource.getTvShows()
     }
 
-    private suspend fun downloadTvShows(){
+    private suspend fun downloadTvShows() {
         val networkTvShows = getTvShowsFromNetwork()
 
         val dbTvShows = tvShowListMapper.networkToDbModel(networkTvShows)
@@ -47,7 +51,7 @@ class TvShowRepository(
         tvShowCacheDataSource.updateTvShows(tvShows)
     }
 
-    private suspend fun getTvShowsFromNetwork(): List<NetworkTVShow>{
+    private suspend fun getTvShowsFromNetwork(): List<NetworkTVShow> {
         var networkTvShows: List<NetworkTVShow> = listOf()
 
         try {
@@ -57,23 +61,21 @@ class TvShowRepository(
             responseBody?.let {
                 networkTvShows = it.networkTvShows
             }
-        }
-        catch (e: Exception){
-            Log.i("MovieMania", "Error downloading tv shows from network.")
+        } catch (e: Exception) {
+            Timber.e(e, "Error downloading tv shows from network.")
         }
 
         return networkTvShows
     }
 
-    private suspend fun getTvShowsFromDataBase(): List<TvShow>{
+    private suspend fun getTvShowsFromDataBase(): List<TvShow> {
         var tvShows: List<TvShow> = listOf()
 
         try {
             val dbTvShows: List<DBTvShow> = tvShowLocalDataSource.getTvShows()
             tvShows = tvShowListMapper.dbToDomainModel(dbTvShows)
-        }
-        catch (e: Exception){
-            Log.i("MovieMania", "Error downloading tv shows from network.")
+        } catch (e: Exception) {
+            Timber.e(e, "Error downloading tv shows from network.")
         }
 
         return tvShows

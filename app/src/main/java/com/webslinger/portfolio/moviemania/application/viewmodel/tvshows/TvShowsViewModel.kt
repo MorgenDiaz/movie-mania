@@ -1,30 +1,46 @@
 package com.webslinger.portfolio.moviemania.application.viewmodel.tvshows
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import com.webslinger.portfolio.moviemania.application.viewmodel.TmdbImageLoader
 import com.webslinger.portfolio.moviemania.domain.model.TvShow
 import com.webslinger.portfolio.moviemania.domain.usecase.tvshow.GetTvShowsUseCase
 import com.webslinger.portfolio.moviemania.domain.usecase.tvshow.UpdateTvShowsUseCase
+import kotlinx.coroutines.launch
 
 class TvShowsViewModel(
     private val getTvShowsUseCase: GetTvShowsUseCase,
     private val updateTvShowsUseCase: UpdateTvShowsUseCase,
+    private val screenStateController: TvShowsScreenStateController,
     val tmdbImageLoader: TmdbImageLoader
 ) : ViewModel() {
+    private val _tvShows: MutableLiveData<List<TvShow>> = MutableLiveData()
+    val tvShows: LiveData<List<TvShow>>
+        get() {
+            return _tvShows
+        }
 
-    fun getTvShows(): LiveData<List<TvShow>>{
-        return liveData {
-            val tvShows = getTvShowsUseCase.execute()
-            emit(tvShows)
+    fun retrieveTvShows() {
+        if (screenStateController.isRetrievingData())
+            return
+
+        screenStateController.setStateRetrievingData()
+
+        viewModelScope.launch {
+            _tvShows.value = getTvShowsUseCase.execute()
+            screenStateController.setStateIdle()
         }
     }
 
-    fun updateTvShows(): LiveData<List<TvShow>>{
-        return liveData {
-            val tvShows = updateTvShowsUseCase.execute()
-            emit(tvShows)
+    fun updateTvShows() {
+        if (screenStateController.isRetrievingData())
+            return
+
+        screenStateController.setStateRetrievingData()
+
+        viewModelScope.launch {
+            _tvShows.value = updateTvShowsUseCase.execute()
+            screenStateController.setStateIdle()
         }
+
     }
 }

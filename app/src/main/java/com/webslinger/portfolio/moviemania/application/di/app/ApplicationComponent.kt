@@ -3,7 +3,6 @@ package com.webslinger.portfolio.moviemania.application.di.app
 import com.webslinger.portfolio.moviemania.application.di.infrastructure.DatabaseModule
 import com.webslinger.portfolio.moviemania.application.di.infrastructure.NetworkModule
 import com.webslinger.portfolio.moviemania.application.di.data.RepositoryModule
-import com.webslinger.portfolio.moviemania.application.di.domain.UseCaseModule
 import com.webslinger.portfolio.moviemania.application.di.app.core.actor.ActorComponent
 import com.webslinger.portfolio.moviemania.application.di.app.core.common.UtilityModule
 import com.webslinger.portfolio.moviemania.application.di.data.datasource.CacheDataSourceModule

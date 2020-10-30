@@ -1,4 +1,4 @@
-package com.webslinger.portfolio.moviemania.application.di.domain
+package com.webslinger.portfolio.moviemania.application.di.app
 
 import com.webslinger.portfolio.moviemania.data.repository.actor.ActorRepository
 import com.webslinger.portfolio.moviemania.data.repository.movie.MovieRepository

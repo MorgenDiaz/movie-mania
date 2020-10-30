@@ -8,6 +8,9 @@ class Converters {
     @TypeConverter
     fun fromStringToInts(value: String?): List<Int>?{
         return value?.let {
+            if(value.isBlank())
+                return listOf()
+
             it.split(":").map{strValue ->
                 strValue.toInt()
             }

@@ -13,16 +13,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
         tools:context=".presentation.home.HomeFragment">
 
         <Button
             android:id="@+id/actors_button"
-            android:layout_width="wrap_content"
+            style="@style/big_round_button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
-            android:text="@string/actors"
             android:onClick="@{()-> viewModel.navigateToActorsScreen()}"
+            android:text="@string/actors"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -32,11 +34,12 @@
 
         <Button
             android:id="@+id/tv_shows_button"
-            android:layout_width="wrap_content"
+            style="@style/big_round_button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/tv_shows"
             android:onClick="@{()-> viewModel.navigateToTvShowsScreen()}"
+            android:text="@string/tv_shows"
             app:layout_constraintBottom_toTopOf="@+id/actors_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -45,11 +48,10 @@
 
         <Button
             android:id="@+id/movies_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/movies"
+            style="@style/big_round_button"
             android:onClick="@{()->viewModel.navigateToMoviesScreen()}"
+            android:shadowColor="#000000"
+            android:text="@string/movies"
             app:layout_constraintBottom_toTopOf="@+id/tv_shows_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
